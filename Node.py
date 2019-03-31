@@ -1,6 +1,5 @@
 class Node:
-    """ This class in as abrastraction a search node
-
+    """ This class in as abrastraction of a search node
 
     :var state: Store the current state.
     :var cost: Store the path cost from the beginning until the actual node
