@@ -64,3 +64,5 @@ def uniformCostSearch(problem):
         <__main__.node object at 0x7f29fbc301d0>
     """
     return informed_search(problem,lambda node: node.cost)
+
+# All this code was written by the T.A's of the class MAC0425 at University of São Paulo, and they are supplementary for the problems itself.
