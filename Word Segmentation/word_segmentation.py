@@ -1,25 +1,25 @@
 import utilities
 
 #################################################################################################
-# 	This class creates a representation of the Word Segmentation problem.						#
-# 	Suppose you want to segment the string 'hellohowareyoutoday' into the string     		  	#
-# 	'hello how are you today'                                                       			#
-#																								#
-# 	We can represent each state as a tuple of strings, where a comma represents					#
-# 	a whitespace between strings, for example: query = 'hellohowareyoutoday'					#
-# 	state_1 = (query,) => ('hellohowareyoutoday',)												#
-#																								#
-# 	The actions we can take is to insert a comma after a letter in the last element 			#
-# 	of the tuple, so if we apply the action 1 to the initial_state, we'll have:					#
-# 	state_2 = ('h', 'ellohowareyoutoday')														#	
-#																								#
-# 	And if we apply the action 2 to the state state_2 we'll have								#
-# 	state_3 = ('h', 'el', 'lohowareyoutoday') 													#
-# 	and so on.																					#
-#																								#
-# 	The criteria we're using to stop our search is finding the string '' as the 				#
-# 	last element of the tuple, because when we found this leaf in our search					#
-# 	it will be exactly as our desired result, and the cost will be optimal. 					#
+# 	This class creates a representation of the Word Segmentation problem.			#
+# 	Suppose you want to segment the string 'hellohowareyoutoday' into the string     	#
+# 	'hello how are you today'                                                       	#
+#												#
+# 	We can represent each state as a tuple of strings, where a comma represents		#
+# 	a whitespace between strings, for example: query = 'hellohowareyoutoday'		#
+# 	state_1 = (query,) => ('hellohowareyoutoday',)						#
+#												#
+# 	The actions we can take is to insert a comma after a letter in the last element 	#
+# 	of the tuple, so if we apply the action 1 to the initial_state, we'll have:		#
+# 	state_2 = ('h', 'ellohowareyoutoday')							#
+#												#
+# 	And if we apply the action 2 to the state state_2 we'll have				#
+# 	state_3 = ('h', 'el', 'lohowareyoutoday') 						#
+# 	and so on.										#
+#												#
+# 	The criteria we're using to stop our search is finding the string '' as the 		#
+# 	last element of the tuple, because when we found this leaf in our search		#
+# 	it will be exactly as our desired result, and the cost will be optimal. 		#
 #################################################################################################
 
 class SegmentationProblem():
