@@ -1,4 +1,5 @@
 import util
+
 #################################################################################################
 # 	This class creates a representation of the Word Segmentation problem.			#
 # 	Suppose you want to segment the string 'hellohowareyoutoday' into the string       	#
