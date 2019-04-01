@@ -1,7 +1,7 @@
 import util
 #################################################################################################
 # 	This class creates a representation of the Word Segmentation problem.			#
-# 	Suppose you want to segment the string 'hellohowareyoutoday' resulting in       	#
+# 	Suppose you want to segment the string 'hellohowareyoutoday' into the string       	#
 # 	'hello how are you today'                                                       	#
 #												#
 # 	We can represent each state as a tuple of strings, where a comma represents		#
