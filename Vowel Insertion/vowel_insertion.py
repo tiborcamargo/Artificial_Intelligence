@@ -1,7 +1,7 @@
 import utilities
 
 #################################################################################################
-# 		This class creates a representation of the Vower Insertion problem.						#
+# 		This class creates a representation of the Vower Insertion problem.		#
 #################################################################################################
 
 class VowelInsertionProblem():
