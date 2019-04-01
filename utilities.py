@@ -1,3 +1,5 @@
+from node import Node
+
 class PriorityQueue:
     """A queue in which the item with minimum f(item) is always popped first."""
     def __init__(self, key, items=(),): 
