@@ -29,7 +29,7 @@ class SegmentationProblem():
 	
 	def isState(self, state):
 		""" 
-		One should implement a verification of state here, but I haven't done 
+		One should implement a verification of state here, but I didn't need to
 		"""
 		return 
 	
@@ -41,7 +41,7 @@ class SegmentationProblem():
 	
 	def actions(self, state):
 		""" 
-		Method that returns all actions that can be applied into one stat
+		Method that returns all actions that can be applied into one state
 		"""
 		word = state[-1]
 		if state == self.initialState():
@@ -111,10 +111,7 @@ def main():
 	print('\n###################################')
 	print('word_segmentation.py is done')
 	print('###################################')
-	
-	
-	# resultInsert = insertVowels('smtms ltr bcms nvr'.split(), bigramCost, possibleFills)
-	# print(resultInsert)
+
 	
 if __name__ == '__main__':
     main()
