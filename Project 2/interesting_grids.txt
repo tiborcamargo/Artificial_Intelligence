@@ -1,0 +1,46 @@
+# Grids are presented with a brief description and suggested config
+# Suggested config is presented only when it is different from default
+# Codes: mt=MAX_TURNS, md=MAX_DEPTH, tk=TANK_CAPACITY, dr=DEFAULT_REFILL
+# Default config: mt=20, md=4, tk=5, dr=10
+
+# Check if evaluation function considers more than just collected
+GAME_GRID = [[0, 5, 0, 5, 7],
+			 [0, 5, 0, 5, 6],
+			 [0, 5, 2, 5, 3],
+			 [3, 1, 0, 0, 3],
+			 [0, 0, 0, 0, 0]]
+
+# Resonable sized grid with player 2 advantage (tk=20)
+GAME_GRID = [[1, 0, 0, 0, 4, 0, 0, 0],
+             [0, 3, 0, 0, 0, 0, 0, 0],
+             [0, 0, 3, 2, 0, 0, 0, 0],
+             [0, 0, 0, 5, 0, 0, 0, 0],
+             [0, 0, 0, 0, 6, 0, 0, 0],
+             [0, 0, 0, 0, 7, 5, 0, 0],
+             [0, 0, 0, 0, 0, 0, 4, 0],
+             [7, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0, 0]]
+
+# Trick game to see if CollectAll really has lowest gas spend (tk=10)
+GAME_GRID = [[3, 0, 1, 6, 7, 3, 5, 3],
+			 [2, 0, 0, 0, 0, 0, 4, 0]]
+
+
+# Multiple refill to complete grid (tk=10, mt=60)
+GAME_GRID = [[7, 0, 0, 0, 7],
+			 [0, 0, 0, 0, 0],
+			 [0, 0, 8, 0, 0],
+			 [0, 2, 0, 0, 0],
+             [7, 0, 0, 0, 7]]
+
+
+# Impossible to complete
+GAME_GRID = [[3, 5, 0, 0, 0],
+			 [5, 5, 5, 5, 0],
+			 [0, 5, 4, 2, 0],
+			 [0, 5, 0, 3, 0],
+			 [0, 0, 0, 0, 8]]
+
+# This are just a small sample of examples, you can create your own
+# by using the grid_generator.py module
