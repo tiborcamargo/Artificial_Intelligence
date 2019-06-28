@@ -16,3 +16,10 @@ Second part: Proper insertion of vowels, given a phrase such as 'hll my nm s', r
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25236592/60368925-7cee1f00-99c8-11e9-9d73-d2995195d35b.png">
 </p>
+
+### Project 2: Developing planning agents
+The objective is to develop a planning agent to play a game in a grid world, you're playing as a yellow taxi cab against a black taxi cab. Your car has to collect passengers without running out of fuel, some characters gives more points than others.
+
+
+
+
