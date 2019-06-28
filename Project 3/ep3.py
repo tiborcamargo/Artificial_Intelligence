@@ -1,5 +1,35 @@
+"""
+  AO PREENCHER ESSE CABECALHO COM O MEU NOME E O MEU NUMERO USP,
+  DECLARO QUE SOU A UNICA PESSOA AUTORA E RESPONSAVEL POR ESSE PROGRAMA.
+  TODAS AS PARTES ORIGINAIS DESSE EXERCICIO PROGRAMA (EP) FORAM
+  DESENVOLVIDAS E IMPLEMENTADAS POR MIM SEGUINDO AS INSTRUCOES
+  DESSE EP E, PORTANTO, NAO CONSTITUEM ATO DE DESONESTIDADE ACADEMICA,
+  FALTA DE ETICA OU PLAGIO.
+  DECLARO TAMBEM QUE SOU A PESSOA RESPONSAVEL POR TODAS AS COPIAS
+  DESSE PROGRAMA E QUE NAO DISTRIBUI OU FACILITEI A
+  SUA DISTRIBUICAO. ESTOU CIENTE QUE OS CASOS DE PLAGIO E
+  DESONESTIDADE ACADEMICA SERAO TRATADOS SEGUNDO OS CRITERIOS
+  DIVULGADOS NA PAGINA DA DISCIPLINA.
+  ENTENDO QUE EPS SEM ASSINATURA NAO SERAO CORRIGIDOS E,
+  AINDA ASSIM, PODERAO SER PUNIDOS POR DESONESTIDADE ACADEMICA.
+
+  Nome : Tibor Zequini Boglár de Camargo
+  NUSP : 9302312
+
+  Referencias: Com excecao das rotinas fornecidas no enunciado
+  e em sala de aula, caso voce tenha utilizado alguma referencia,
+  liste-as abaixo para que o seu programa nao seja considerado
+  plagio ou irregular.
+
+  Exemplo:
+  - O algoritmo Quicksort foi baseado em:
+  https://pt.wikipedia.org/wiki/Quicksort
+  http://www.ime.usp.br/~pf/algoritmos/aulas/quick.html
+"""
+
 import math
 import random
+import collections
 from collections import defaultdict
 import util
 
@@ -7,7 +37,6 @@ import util
 # **********************************************************
 # **            PART 01 Modeling BlackJack                **
 # **********************************************************
-
 
 class BlackjackMDP(util.MDP):
     """
@@ -58,60 +87,103 @@ class BlackjackMDP(util.MDP):
          * When the probability is 0 for a transition to a particular new state,
            don't include that state in the list returned by succAndProbReward.
         """
-        # BEGIN YOUR CODE
-        hand, spy, board = state
-        if action not in self.actions(state):
-            return 'Invalid action'
         
-        if action == 'Take':
-            if spy != None:
-                idx = spy
-                board_to_list = list(board)
-                board_to_list[idx] -= 1
-                new_board = tuple(board_to_list)
-                return (hand+self.cardValues[idx], None, new_board)
-            else:
-                num_of_cards_on_board = sum(board)
-                probability = [(i, board[i]/num_of_cards_on_board) for i in range(0, len(board))]
-                u = random.uniform(0, 1)
-                summ = 0
-                for i in range(0, len(probability)):
-                    summ += probability[i][1]
-                    if u < summ:
-                        idx = i
-                        board_to_list = list(board)
-                        board_to_list[idx] -= 1
-                        new_board = tuple(board_to_list)
-                        new_state = (hand+self.cardValues[idx], None, new_board)
-                        if new_state[0] > self.threshold:
-                            new_state = (hand+self.cardValues[idx], None, None)
-                        return new_state 
-                
-        if action == 'Peek':
-            num_of_cards_on_board = sum(board)
-            probability = [(i, board[i]/num_of_cards_on_board) for i in range(0, len(board))]
-            u = random.uniform(0, 1)
+        (hand, spy, board) = state
+        
+        if board == None:
+            return []
+        
+        num_of_cards_on_board = sum(board)
+        final_result = [] # será uma lista com o estado, probabilidade e recompensa
+
+        if num_of_cards_on_board == 0:
+            return final_result
+        if action not in self.actions(state):
+            return 'invalid action'
+        if spy != None:
+            if spy >= len(board):
+                return 'invalid action, index of peeked card does not exist'
+            if board[spy] == 0:
+                print('invalid state')
+                return 'invalid state'
+    
+        if action in ['Peek', 'Take']:
             summ = 0
+            idxCardSelected = -float('inf')
+            u = random.uniform(0, 1)
+            probability = [(i, board[i]/num_of_cards_on_board) for i in range(0, len(board))]
             for i in range(0, len(probability)):
                 summ += probability[i][1]
                 if u < summ:
-                    idx = i
-                    new_state = (hand, idx, board)
-                    self.rewards += self.peekCost
-                    return new_state
-                
-        if action == 'Quit':
-            self.rewards += hand
-            return (hand, None, None)
+                    idxCardSelected = i
+                    prob = probability[idxCardSelected][1]
+                    break
         
-        return 'deu algum erro'
+        if action == 'Peek':
+            if spy != None:
+                return final_result
+            else:
+                reward = 0
+                self.rewards -= self.peekCost
+                for card_idx, prob in probability:
+                    if prob != 0:
+                        newState = (hand, card_idx, board)
+                        final_result.append((newState, prob, reward))
+                
+        if action == 'Take':
+            if spy != None:
+                newHand = hand + self.cardValues[spy]
+                prob = 1
+                reward = 0
+                
+                board_to_list = list(board)
+                board_to_list[spy] -= 1
+                newBoard = tuple(board_to_list)
+                
+                if sum(newBoard) == 0:
+                    newBoard = None
+                    self.rewards += newHand
+                    reward = self.rewards
+                
+                newState = (newHand, None, newBoard)
+                final_result.append((newState, prob, reward))
+                
+            else:
+                for card_idx, prob in probability:
+                    if prob != 0:
+                        newHand = hand + self.cardValues[card_idx]
+                        reward = 0
+
+                        board_to_list = list(board)
+                        board_to_list[card_idx] -= 1
+                        newBoard = tuple(board_to_list)
+
+                        if sum(newBoard) == 0:
+                            newBoard = None
+                            self.rewards += newHand
+                            reward = self.rewards
+
+                        if newHand > self.threshold:
+                            newBoard = None
+                            reward = 0
+
+                        newState = (newHand, None, newBoard)
+                        final_result.append((newState, prob, reward))
+
+        if action == 'Quit':
+            newState = (hand, None, None)
+            reward = hand
+            self.rewards = reward
+            prob = 1
+            final_result.append((newState, prob, self.rewards))
+            
+        return final_result
 
     def discount(self):
         """
-        Return the descount that is 1
+        Return the descount  that is 1
         """
         return 1
-
 # **********************************************************
 # **                    PART 02 Value Iteration           **
 # **********************************************************
@@ -143,10 +215,23 @@ class ValueIteration(util.MDPAlgorithm):
             for state in mdp.states:
                 pi[state] = max((computeQ(mdp, V, state, action), action) for action in mdp.actions(state))[1]
             return pi
+        
         V = defaultdict(float)  # state -> value of state
         # Implement the main loop of Asynchronous Value Iteration Here:
         # BEGIN_YOUR_CODE
-        raise Exception("Not implemented yet")
+        for state in mdp.states:
+            V[state] = 0
+        
+        theta = epsilon + 2
+        Delta = epsilon+1
+        numIters = 0
+        while abs(Delta - theta) > epsilon and numIters < 15000:
+            for state in mdp.states:
+                newV = V[state]
+                V[state] = max((computeQ(mdp, V, state, action), action) for action in mdp.actions(state))[0]
+                Delta = max(Delta, abs(newV - V[state])) 
+            theta = Delta
+            numIters += 1
         # END_YOUR_CODE
 
         # Extract the optimal policy now
@@ -167,9 +252,9 @@ def peekingMDP():
     optimal action for at least 10% of the states.
     """
     # BEGIN_YOUR_CODE
-    raise Exception("Not implemented yet")
+    mdp = BlackjackMDP(cardValues=[1,11], multiplicity=2, threshold=20, peekCost=1)    
     # END_YOUR_CODE
-
+    return mdp
 
 # **********************************************************
 # **                    PART 03 Q-Learning                **
@@ -227,14 +312,21 @@ class QLearningAlgorithm(util.RLAlgorithm):
          HINT: Remember to check if s is a terminal state and s' None.
         """
         # BEGIN_YOUR_CODE
-        if (newState is None):
-            Vopt = 0
-        else:
-            Vopt = max(self.getQ(newState, newAction) for newAction in self.actions(newState))
-        Qopt = self.getQ(state,action)
-        for k, v in self.featureExtractor(state,action):
-			self.weights[k] = self.weights[k] - self.getStepSize() * (Qopt - reward - self.discount * Vopt)*v        
-		# END_YOUR_CODE
+        V_old = 0
+        
+        if newState != None:
+            V_old = max((self.getQ(newState, next_action), next_action) for next_action in self.actions(newState))[0]
+            
+        pred = self.getQ(state, action)
+        gamma = self.discount
+        target = (gamma*V_old) + reward 
+        step_size = self.getStepSize()
+        scale = step_size*(pred - target)
+        
+        for func, val in self.featureExtractor(state, action):
+            self.weights[func] = self.weights[func] - (val*scale)    
+            
+        # END_YOUR_CODE
 
 def identityFeatureExtractor(state, action):
     """
@@ -248,3 +340,38 @@ def identityFeatureExtractor(state, action):
 # Large test case
 largeMDP = BlackjackMDP(cardValues=[1, 3, 5, 8, 10], multiplicity=3, threshold=40, peekCost=1)
 
+# **********************************************************
+# **        PART 03-01 Features for Q-Learning             **
+# **********************************************************
+
+def blackjackFeatureExtractor(state, action):
+    """
+    You should return a list of (feature key, feature value) pairs.
+    (See identityFeatureExtractor() above for a simple example.)
+    """
+    # BEGIN_YOUR_CODE
+    total, nextCard, counts = state
+    key = ('total_feature', total, action)
+    value = 1
+    
+    new_arr = []
+    new_arr.append((key, value))
+    
+    # indicadores de presença/ausencia
+    if counts != None:
+        my_list = list(counts)
+        for i in range(0, len(my_list)):
+            if my_list[i] != 0:
+                my_list[i] = 1
+        val = 1
+        key = ('Indicador de Presenca', tuple(my_list), action)
+        new_arr.append((key, val))
+        
+    if counts != None:
+        for i in range(0, len(counts)):
+            val = 1
+            key = ('Indicador de Numero de Cartas', i, counts[i], action)
+            new_arr.append((key,val))
+            
+    return new_arr
+    # END_YOUR_CODE
