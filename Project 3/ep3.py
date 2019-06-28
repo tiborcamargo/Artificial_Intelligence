@@ -1,32 +1,3 @@
-"""
-  AO PREENCHER ESSE CABECALHO COM O MEU NOME E O MEU NUMERO USP,
-  DECLARO QUE SOU A UNICA PESSOA AUTORA E RESPONSAVEL POR ESSE PROGRAMA.
-  TODAS AS PARTES ORIGINAIS DESSE EXERCICIO PROGRAMA (EP) FORAM
-  DESENVOLVIDAS E IMPLEMENTADAS POR MIM SEGUINDO AS INSTRUCOES
-  DESSE EP E, PORTANTO, NAO CONSTITUEM ATO DE DESONESTIDADE ACADEMICA,
-  FALTA DE ETICA OU PLAGIO.
-  DECLARO TAMBEM QUE SOU A PESSOA RESPONSAVEL POR TODAS AS COPIAS
-  DESSE PROGRAMA E QUE NAO DISTRIBUI OU FACILITEI A
-  SUA DISTRIBUICAO. ESTOU CIENTE QUE OS CASOS DE PLAGIO E
-  DESONESTIDADE ACADEMICA SERAO TRATADOS SEGUNDO OS CRITERIOS
-  DIVULGADOS NA PAGINA DA DISCIPLINA.
-  ENTENDO QUE EPS SEM ASSINATURA NAO SERAO CORRIGIDOS E,
-  AINDA ASSIM, PODERAO SER PUNIDOS POR DESONESTIDADE ACADEMICA.
-
-  Nome : Tibor Zequini Boglár de Camargo
-  NUSP : 9302312
-
-  Referencias: Com excecao das rotinas fornecidas no enunciado
-  e em sala de aula, caso voce tenha utilizado alguma referencia,
-  liste-as abaixo para que o seu programa nao seja considerado
-  plagio ou irregular.
-
-  Exemplo:
-  - O algoritmo Quicksort foi baseado em:
-  https://pt.wikipedia.org/wiki/Quicksort
-  http://www.ime.usp.br/~pf/algoritmos/aulas/quick.html
-"""
-
 import math
 import random
 import collections
