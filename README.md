@@ -18,8 +18,7 @@ Second part: Proper insertion of vowels, given a phrase such as 'hll my nm s', r
 </p>
 
 ### Project 2: Developing planning agents
-The objective is to develop a planning agent to play a game in a grid world, you're playing as a yellow taxi cab against a black taxi cab. Your car has to collect passengers without running out of fuel, some characters gives more points than others.
-
+The objective is to develop a planning agent to play a game in a grid world, you're playing as a yellow taxi cab against a black taxi cab. Your car has to collect passengers without running out of fuel, some characters gives more points than others. (The characters within the game are the professor and TA's)
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25236592/60371198-f25cee00-99ce-11e9-8e74-63b32db3b5f5.gif">
 </p>
