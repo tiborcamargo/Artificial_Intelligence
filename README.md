@@ -9,9 +9,7 @@ This is a repository with some of the projects I developed throughout the Artifi
 
 
 ### Project 1: Segmentation of Words using Uniform Cost Search
-First part: Given a query, such as 'thisisnotarealword', find the proper places to insert whitespaces using uniform cost search, resulting in the proper readable string 'this is not a real word'. 
-
-Second part: Proper insertion of vowels, given a phrase such as 'hll my nm s', return 'hello my name is'.
+First part: Given a query, such as 'thisisnotarealword', find the proper places to insert whitespaces using uniform cost search, resulting in the proper readable string 'this is not a real word'. The second part is similar, given a phrase such as 'hll my nm s', return 'hello my name is'. The figure below is an illustration of the search in the state space.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/25236592/60368925-7cee1f00-99c8-11e9-9d73-d2995195d35b.png">
