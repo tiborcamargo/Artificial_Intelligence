@@ -8,9 +8,9 @@ This is a repository with some of the projects I developed througout the Artific
 3. Machine Learning: Q-Learning and Supervised Learning (kNN, Decision Trees, Perceptron, Neural Networks)
 
 
-1. Segmentation of Words: 
-  - Given a query, such as 'thisisnotarealword', find the proper places to insert whitespaces using uniform cost search, resulting in the proper readable string 'this is not a real word'. 
+### Project 1: Segmentation of Words using Uniform Cost Search
+First part: Given a query, such as 'thisisnotarealword', find the proper places to insert whitespaces using uniform cost search, resulting in the proper readable string 'this is not a real word'. 
+Second part: Proper insertion of vowels, given a phrase such as 'hll my nm s', return 'hello my name is'.
   
-2. Insertion of Vowels:
-  - Given a query, such as 'hll hw r y?', insert the vowels into proper place, in this example we should return 'hello how are you', solving using uniform cost search too. 
-  - To be fair, it's not working in the greatest way, also because is kind of hard to say 'f y ct' means 'if you act', other than any other thing. 
+![ucs](https://user-images.githubusercontent.com/25236592/60368925-7cee1f00-99c8-11e9-9d73-d2995195d35b.png)
+
