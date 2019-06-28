@@ -1,5 +1,11 @@
-# Artificial Intelligence
-Some algorithms I developed thoughout my undergrad studies.
+
+![artwork](https://user-images.githubusercontent.com/25236592/60366501-1403a880-99c2-11e9-84e4-e565584605cc.png)
+
+This is a repository with some of the projects I developed througout the Artificial Intelligence course at University of São Paulo. The course was subdivided into various modules, containing some of the following topics:
+1. State space search: Breadth-first search, Depth-first search, Uniform cost search, A* search and expectimax search.
+2. Probabilistic Reasoning: Hidden-markov chains, Bayesian networks and Value-Iteration (when dealing with reinforcement learning)
+3. Machine Learning: Q-Learning and Supervised Learning (kNN, Decision Trees, Perceptron, Neural Networks)
+
 
 1. Segmentation of Words: 
   - Given a query, such as 'thisisnotarealword', find the proper places to insert whitespaces using uniform cost search, resulting in the proper readable string 'this is not a real word'. 
